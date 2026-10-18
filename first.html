@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamtva Kaapi | Authentic South Indian Filter Coffee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #120c08;
+            --bg-card: #1c140e;
+            --bg-card-hover: #261b13;
+            --accent-gold: #d4af37;
+            --accent-gold-light: #f3e5ab;
+            --accent-brass: #c59b27;
+            --text-light: #f5f0eb;
+            --text-muted: #b8a89a;
+            --border-color: rgba(212, 175, 55, 0.2);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(18, 12, 8, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 10%;
+            background: linear-gradient(rgba(18, 12, 8, 0.75), rgba(18, 12, 8, 0.9)), url('brand-photo.jpeg') center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin-top: 60px;
+        }
+
+        .tagline-devanagari {
+            font-size: 1.4rem;
+            color: var(--accent-gold-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-brass));
+            color: var(--bg-dark);
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Section Commons */
+        section {
+            padding: 6rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--accent-gold-light);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+        }
+
+        /* Products Section */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-gold);
+            background: var(--bg-card-hover);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-family: var(--font-heading);
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info .composition {
+            font-size: 0.85rem;
+            color: var(--accent-gold-light);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Gifting Section */
+        .gifting-container {
+            background: linear-gradient(rgba(18, 12, 8, 0.85), rgba(18, 12, 8, 0.85)), url('box.jpeg') center/cover no-repeat;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 4rem 3rem;
+            text-align: center;
+        }
+
+        .gifting-container h3 {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .gifting-container p {
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            color: var(--text-muted);
+        }
+
+        /* Storage Guide */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .guide-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .guide-card h4 {
+            color: var(--accent-gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            border-radius: 12px;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-details {
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .contact-item strong {
+            color: var(--accent-gold-light);
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: var(--font-body);
+        }
+
+        form input:focus, form textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            background: var(--bg-dark);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">Mamtva Kaapi</a>
+        <ul class="nav-links">
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#products">Blends</a></li>
+            <li><a href="#gifting">Gifting</a></li>
+            <li><a href="#storage">Care Guide</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="tagline-devanagari">"शुद्धम् सौख्यम् च"</div>
+            <h1>Purity and Comfort in Every Brew</h1>
+            <p>Experience authentic South Indian filter coffee crafted with rich heritage, handpicked estate beans, and uncompromised purity.</p>
+            <a href="#products" class="btn">Explore Our Collection</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>Our Heritage</h2>
+            <p>Rooted in South Indian Traditions</p>
+        </div>
+        <div class="about-grid">
+            <img src="brand.jpeg" alt="Mamtva Kaapi Heritage" class="about-img">
+            <div class="about-text">
+                <h3>Crafting the Authentic Kaapi Experience</h3>
+                <p>At Mamtva Kaapi, we honor the timeless tradition of South Indian filter coffee. Our blends are meticulously curated from select shade-grown Arabica and Robusta beans, roasted to perfection to recreate the comforting warmth of traditional brewing.</p>
+                <p>Whether you crave the deep viscosity of traditional hotel-style Kaapi or the smooth, aromatic richness of a pure Arabica blend, our selection delivers standard-setting flavor in every cup.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="section-title">
+            <h2>Our Signature Blends</h2>
+            <p>Handcrafted for every palate and brewing style</p>
+        </div>
+        <div class="product-grid">
+            
+            <!-- Velvet Crest -->
+            <div class="product-card">
+                <img src="all.jpeg" alt="Velvet Crest">
+                <div class="product-info">
+                    <h3>Velvet Crest</h3>
+                    <div class="composition">100% Pure Arabica</div>
+                    <p>Highlights the smooth, luxurious texture of premium 100% Arabica beans with an elevated, rich aroma.</p>
+                </div>
+            </div>
+
+            <!-- Crema Craft -->
+            <div class="product-card">
+                <img src="crema-craft.jpeg" alt="Crema Craft">
+                <div class="product-info">
+                    <h3>Crema Craft</h3>
+                    <div class="composition">80% Arabica | 20% Robusta Blend</div>
+                    <p>A balanced, smooth blend designed specifically to yield a rich, velvety crema layer for espresso lovers.</p>
+                </div>
+            </div>
+
+            <!-- Malgudi Gold -->
+            <div class="product-card">
+                <img src="crema-craft-sticker.jpeg" alt="Malgudi Gold">
+                <div class="product-info">
+                    <h3>Malgudi Gold</h3>
+                    <div class="composition">70% Coffee | 30% Chicory</div>
+                    <p>The traditional "Hotel-Style" strong Kaapi. High strength and viscosity crafted with 50% Robusta, 30% Arabica, and 20% Peaberry.</p>
+                </div>
+            </div>
+
+            <!-- Dakshin Heritage -->
+            <div class="product-card">
+                <img src="dakshin-heritage.jpeg" alt="Dakshin Heritage">
+                <div class="product-info">
+                    <h3>Dakshin Heritage</h3>
+                    <div class="composition">85% Coffee | 15% Chicory</div>
+                    <p>A premium heritage blend offering a smooth taste and highly aromatic finish. Medium-dark roast with Arabica Peaberry.</p>
+                </div>
+            </div>
+
+            <!-- Barista Reserve -->
+            <div class="product-card">
+                <img src="barista-reserve.jpeg" alt="Barista Reserve">
+                <div class="product-info">
+                    <h3>Barista Reserve</h3>
+                    <div class="composition">90% Soluble Instant | 10% Fine Roast Dust</div>
+                    <p>Microground instant coffee providing quick convenience with the authentic flavor depth and crema of freshly brewed filter coffee.</p>
+                </div>
+            </div>
+
+            <!-- Malgudi Instant -->
+            <div class="product-card">
+                <img src="barista-reserve-sticker.jpeg" alt="Malgudi Instant">
+                <div class="product-info">
+                    <h3>Malgudi Instant</h3>
+                    <div class="composition">70% Instant Coffee | 30% Chicory</div>
+                    <p>Traditional commercial instant blend with a bold Robusta base, delivering traditional strength instantly.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Gifting Section -->
+    <section id="gifting">
+        <div class="gifting-container">
+            <h3>Artisanal & Festive Gifting Sets</h3>
+            <p>Elevate corporate gifting, weddings, and festive occasions with custom velvet-lined keepsake chests, paired with handcrafted traditional brass dabarah sets and personalized touchpoints.</p>
+            <a href="#contact" class="btn">Inquire for Custom Orders</a>
+        </div>
+    </section>
+
+    <!-- Storage Guide Section -->
+    <section id="storage">
+        <div class="section-title">
+            <h2>Coffee Care & Storage</h2>
+            <p>Preserve maximum aroma and freshness</p>
+        </div>
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h4>Seal Firmly</h4>
+                <p>Always squeeze excess air out of resealable pouches before zipping shut.</p>
+            </div>
+            <div class="guide-card">
+                <h4>Airtight Storage</h4>
+                <p>Transfer beans or ground coffee to an opaque, airtight canister for extra protection.</p>
+            </div>
+            <div class="guide-card">
+                <h4>Cool & Dark Place</h4>
+                <p>Keep coffee away from direct sunlight, humidity, and heat sources like stoves.</p>
+            </div>
+            <div class="guide-card">
+                <h4>Use Bags Clips</h4>
+                <p>For standard pouches, roll the top down tightly and clip firmly before storing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p>Have questions about our blends or looking for custom gift orders? Reach out to us directly!</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <strong>Phone:</strong> +91 98765 43210
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong> contact@mamtvakaapi.com
+                    </div>
+                    <div class="contact-item">
+                        <strong>Location:</strong> Bengaluru, Karnataka, India
+                    </div>
+                </div>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will contact you soon.');">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email Address" required>
+                <input type="tel" placeholder="Your Phone Number" required>
+                <textarea rows="4" placeholder="Your Message or Bulk Order Requirements" required></textarea>
+                <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Mamtva Kaapi. All rights reserved. | Authentic South Indian Filter Coffee</p>
+    </footer>
+
+</body>
+</html>
