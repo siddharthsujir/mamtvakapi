@@ -186,9 +186,38 @@
         }
 
         /* Products Section */
+        .category-block {
+            margin-bottom: 4rem;
+        }
+
+        .category-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            color: var(--accent-gold-light);
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .category-line {
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(90deg, var(--accent-gold), rgba(212, 175, 55, 0.1));
+        }
+
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
 
@@ -197,7 +226,9 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, border-color 0.3s, background 0.3s;
         }
 
         .product-card:hover {
@@ -208,32 +239,104 @@
 
         .product-card img {
             width: 100%;
-            height: 280px;
+            height: 250px;
             object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .product-info {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
-        .product-info h3 {
+        .product-info h4 {
             font-family: var(--font-heading);
             color: var(--accent-gold);
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+            margin-bottom: 0.4rem;
         }
 
         .product-info .composition {
             font-size: 0.85rem;
             color: var(--accent-gold-light);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.75rem;
             font-weight: 600;
+        }
+
+        .variant-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .variant-tag {
+            font-size: 0.72rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            color: var(--accent-gold-light);
+            font-weight: 500;
         }
 
         .product-info p {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-bottom: 1rem;
+            margin-bottom: 1.25rem;
+            flex: 1;
+        }
+
+        /* Pricing Grid inside Product Card */
+        .price-section {
+            margin-top: auto;
+            padding-top: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .price-label {
+            display: block;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 0.55rem;
+            font-weight: 600;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.35rem;
+        }
+
+        .price-tier {
+            background: rgba(18, 12, 8, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 6px;
+            padding: 0.45rem 0.2rem;
+            text-align: center;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .product-card:hover .price-tier {
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+
+        .tier-weight {
+            display: block;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-bottom: 0.15rem;
+        }
+
+        .tier-amount {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-gold);
         }
 
         /* Gifting Section */
@@ -335,6 +438,18 @@
             border-color: var(--accent-gold);
         }
 
+        .form-feedback {
+            display: none;
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 6px;
+            background: rgba(212, 175, 55, 0.14);
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold-light);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -354,6 +469,12 @@
             }
             .nav-links {
                 display: none;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .tier-amount {
+                font-size: 0.78rem;
             }
         }
     </style>
@@ -389,7 +510,7 @@
             <p>Rooted in South Indian Traditions</p>
         </div>
         <div class="about-grid">
-            <img src="brand.jpeg" alt="Mamtva Kaapi Heritage" class="about-img">
+            <img src="brand.jpeg" alt="Mamtva Kaapi Heritage" class="about-img" onerror="this.src='https://placehold.co/600x450/1c140e/d4af37?text=Mamtva+Kaapi'">
             <div class="about-text">
                 <h3>Crafting the Authentic Kaapi Experience</h3>
                 <p>At Mamtva Kaapi, we honor the timeless tradition of South Indian filter coffee. Our blends are meticulously curated from select shade-grown Arabica and Robusta beans, roasted to perfection to recreate the comforting warmth of traditional brewing.</p>
@@ -404,75 +525,186 @@
             <h2>Our Signature Blends</h2>
             <p>Handcrafted for every palate and brewing style</p>
         </div>
-        <div class="product-grid">
-            
-            <!-- Velvet Crest -->
-            <div class="product-card">
-                <img src="all.jpeg" alt="Velvet Crest">
-                <div class="product-info">
-                    <h3>Velvet Crest</h3>
-                    <div class="composition">100% Pure Arabica</div>
-                    <p>Highlights the smooth, luxurious texture of premium 100% Arabica beans with an elevated, rich aroma.</p>
-                </div>
-            </div>
 
-            <!-- Crema Craft -->
-            <div class="product-card">
-                <img src="crema-craft.jpeg" alt="Crema Craft">
-                <div class="product-info">
-                    <h3>Crema Craft</h3>
-                    <div class="composition">80% Arabica | 20% Robusta Blend</div>
-                    <p>A balanced, smooth blend designed specifically to yield a rich, velvety crema layer for espresso lovers.</p>
-                </div>
+        <!-- Category 1: Filter Coffee -->
+        <div class="category-block">
+            <div class="category-header">
+                <h3>Filter Coffee</h3>
+                <div class="category-line"></div>
             </div>
+            <div class="product-grid">
 
-            <!-- Malgudi Gold -->
-            <div class="product-card">
-                <img src="crema-craft-sticker.jpeg" alt="Malgudi Gold">
-                <div class="product-info">
-                    <h3>Malgudi Gold</h3>
-                    <div class="composition">70% Coffee | 30% Chicory</div>
-                    <p>The traditional "Hotel-Style" strong Kaapi. High strength and viscosity crafted with 50% Robusta, 30% Arabica, and 20% Peaberry.</p>
+                <!-- 1. Velvet Crest -->
+                <div class="product-card">
+                    <img src="all.jpeg" alt="Velvet Crest" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Velvet+Crest'">
+                    <div class="product-info">
+                        <h4>Velvet Crest</h4>
+                        <div class="composition">100% Arabica</div>
+                        <p>Smooth, luxurious texture crafted from premium 100% estate Arabica beans with an elevated, rich aroma.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹20</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹50</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹105</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹360</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹520</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Dakshin Heritage -->
-            <div class="product-card">
-                <img src="dakshin-heritage.jpeg" alt="Dakshin Heritage">
-                <div class="product-info">
-                    <h3>Dakshin Heritage</h3>
-                    <div class="composition">85% Coffee | 15% Chicory</div>
-                    <p>A premium heritage blend offering a smooth taste and highly aromatic finish. Medium-dark roast with Arabica Peaberry.</p>
+                <!-- 2. Crema Craft -->
+                <div class="product-card">
+                    <img src="crema-craft.jpeg" alt="Crema Craft" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Crema+Craft'">
+                    <div class="product-info">
+                        <h4>Crema Craft</h4>
+                        <div class="composition">50-50 Blend (Arabica &amp; Robusta)</div>
+                        <p>A balanced, full-bodied 50-50 blend designed to yield a rich, velvety crema and robust flavor.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹15</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹46</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹90</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹230</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹460</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Barista Reserve -->
-            <div class="product-card">
-                <img src="barista-reserve.jpeg" alt="Barista Reserve">
-                <div class="product-info">
-                    <h3>Barista Reserve</h3>
-                    <div class="composition">90% Soluble Instant | 10% Fine Roast Dust</div>
-                    <p>Microground instant coffee providing quick convenience with the authentic flavor depth and crema of freshly brewed filter coffee.</p>
+                <!-- 3. Dakshin Heritage -->
+                <div class="product-card">
+                    <img src="dakshin-heritage.jpeg" alt="Dakshin Heritage" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Dakshin+Heritage'">
+                    <div class="product-info">
+                        <h4>Dakshin Heritage</h4>
+                        <div class="composition">90-10 Blend (90% Coffee | 10% Chicory)</div>
+                        <p>A refined South Indian filter blend combining 90% select coffee with 10% chicory for a smooth, aromatic cup.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹15</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹40</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹75</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹190</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹375</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Malgudi Instant -->
-            <div class="product-card">
-                <img src="barista-reserve-sticker.jpeg" alt="Malgudi Instant">
-                <div class="product-info">
-                    <h3>Malgudi Instant</h3>
-                    <div class="composition">70% Instant Coffee | 30% Chicory</div>
-                    <p>Traditional commercial instant blend with a bold Robusta base, delivering traditional strength instantly.</p>
+                <!-- 4. Dakshin Gold -->
+                <div class="product-card">
+                    <img src="crema-craft-sticker.jpeg" alt="Dakshin Gold" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Dakshin+Gold'">
+                    <div class="product-info">
+                        <h4>Dakshin Gold</h4>
+                        <div class="composition">77-23 Blend (77% Coffee | 23% Chicory)</div>
+                        <p>Classic South Indian filter blend with rich body, deep color, and traditional warmth.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹10</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹30</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹60</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹155</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹300</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <!-- 5. Barrel Fermented Coffee -->
+                <div class="product-card">
+                    <img src="barista-reserve.jpeg" alt="Barrel Fermented Coffee" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Barrel+Fermented'">
+                    <div class="product-info">
+                        <h4>Barrel Fermented Coffee</h4>
+                        <div class="composition">Specialty Filter Coffee</div>
+                        <div class="variant-tags">
+                            <span class="variant-tag">Wine</span>
+                            <span class="variant-tag">Whiskey</span>
+                            <span class="variant-tag">Rum</span>
+                            <span class="variant-tag">Orange</span>
+                            <span class="variant-tag">Pineapple</span>
+                            <span class="variant-tag">Honey Processed</span>
+                        </div>
+                        <p>Artisanal micro-lot filter coffees fermented and processed for complex, distinctive tasting notes.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹45</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹140</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹276</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹690</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹1,380</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Category 2: Instant Coffee -->
+        <div class="category-block">
+            <div class="category-header">
+                <h3>Instant Coffee</h3>
+                <div class="category-line"></div>
+            </div>
+            <div class="product-grid">
+
+                <!-- 6. Velvet Crest Instant -->
+                <div class="product-card">
+                    <img src="barista-reserve-sticker.jpeg" alt="Velvet Crest Instant" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Velvet+Crest+Instant'">
+                    <div class="product-info">
+                        <h4>Velvet Crest Instant</h4>
+                        <div class="composition">70-30 Blend (70% Instant Coffee | 30% Chicory)</div>
+                        <p>Traditional South Indian instant coffee blend delivering bold strength and rich decoction-style taste in seconds.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹15</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹35</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹65</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹160</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹320</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Flavoured Coffee -->
+                <div class="product-card">
+                    <img src="all.jpeg" alt="Flavoured Coffee" onerror="this.src='https://placehold.co/600x400/1c140e/d4af37?text=Flavoured+Coffee'">
+                    <div class="product-info">
+                        <h4>Flavoured Coffee</h4>
+                        <div class="composition">Instant Coffee</div>
+                        <div class="variant-tags">
+                            <span class="variant-tag">Vanilla</span>
+                            <span class="variant-tag">Chocolate</span>
+                        </div>
+                        <p>Smooth soluble coffee infused with rich aromatic notes of natural Vanilla and decadent Chocolate.</p>
+                        <div class="price-section">
+                            <span class="price-label">Pack Sizes &amp; Selling Price</span>
+                            <div class="price-grid">
+                                <div class="price-tier"><span class="tier-weight">15g</span><span class="tier-amount">₹50</span></div>
+                                <div class="price-tier"><span class="tier-weight">50g</span><span class="tier-amount">₹175</span></div>
+                                <div class="price-tier"><span class="tier-weight">100g</span><span class="tier-amount">₹345</span></div>
+                                <div class="price-tier"><span class="tier-weight">250g</span><span class="tier-amount">₹860</span></div>
+                                <div class="price-tier"><span class="tier-weight">500g</span><span class="tier-amount">₹1,725</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
     <!-- Gifting Section -->
     <section id="gifting">
         <div class="gifting-container">
-            <h3>Artisanal & Festive Gifting Sets</h3>
+            <h3>Artisanal &amp; Festive Gifting Sets</h3>
             <p>Elevate corporate gifting, weddings, and festive occasions with custom velvet-lined keepsake chests, paired with handcrafted traditional brass dabarah sets and personalized touchpoints.</p>
             <a href="#contact" class="btn">Inquire for Custom Orders</a>
         </div>
@@ -481,7 +713,7 @@
     <!-- Storage Guide Section -->
     <section id="storage">
         <div class="section-title">
-            <h2>Coffee Care & Storage</h2>
+            <h2>Coffee Care &amp; Storage</h2>
             <p>Preserve maximum aroma and freshness</p>
         </div>
         <div class="guide-grid">
@@ -494,7 +726,7 @@
                 <p>Transfer beans or ground coffee to an opaque, airtight canister for extra protection.</p>
             </div>
             <div class="guide-card">
-                <h4>Cool & Dark Place</h4>
+                <h4>Cool &amp; Dark Place</h4>
                 <p>Keep coffee away from direct sunlight, humidity, and heat sources like stoves.</p>
             </div>
             <div class="guide-card">
@@ -522,13 +754,14 @@
                     </div>
                 </div>
             </div>
-            <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will contact you soon.');">
+            <!-- <form id="contactForm">
                 <input type="text" placeholder="Your Name" required>
                 <input type="email" placeholder="Your Email Address" required>
                 <input type="tel" placeholder="Your Phone Number" required>
                 <textarea rows="4" placeholder="Your Message or Bulk Order Requirements" required></textarea>
                 <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Send Message</button>
-            </form>
+                <div id="formFeedback" class="form-feedback">Thank you for reaching out! We will contact you soon.</div>
+            </form> -->
         </div>
     </section>
 
@@ -536,6 +769,16 @@
     <footer>
         <p>&copy; 2026 Mamtva Kaapi. All rights reserved. | Authentic South Indian Filter Coffee</p>
     </footer>
+
+    <script>
+        // Handle contact form submission cleanly without browser alert dialogs
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('formFeedback');
+            feedback.style.display = 'block';
+            this.reset();
+        });
+    </script>
 
 </body>
 </html>
